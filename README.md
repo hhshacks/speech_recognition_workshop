@@ -181,3 +181,7 @@ recognition.onerror = function(event) {
   diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
 }
 ```
+
+# Congratulations, you've made a computational linguistics program! Our code will detect the user's speech and change the background color of the page to match the word they say!
+
+NOTE: Be sure to run your program in the new window tab, or the algorithm won't work.
