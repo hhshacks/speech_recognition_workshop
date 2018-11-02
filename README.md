@@ -30,7 +30,7 @@ This will give us some text on the page and link our Javascript file to our HTML
 
 
 
-4. Let's add a paragraph in the middle of the page to let our users know which words our program can detect. We'll be starting with colors for now, but you change it to whatever you want. Put it underneath the <h1> tag. We eventually want it to look like this:
+4. Let's add a paragraph in the middle of the page to let our users know which words our program can detect. We'll be starting with colors for now, but you change it to whatever you want. Put it underneath the "h1" tag. We eventually want it to look like this:
 
 ```
 <p class="hints"></p>
