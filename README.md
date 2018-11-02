@@ -79,4 +79,4 @@ This will give some basic visual properties to our elements, centering everythin
 
 ### Your code should look something like this at this point:
 Inline-style: 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/hhshacks/speech_recognition_workshop/blob/master/Screen%20Shot%202018-11-02%20at%201.46.19%20PM.png)
