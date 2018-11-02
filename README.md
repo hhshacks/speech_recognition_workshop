@@ -97,7 +97,7 @@ This creates the objects that we'll use to store and track the user's speech.
 var words = [ 'aqua' , 'azure' , 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 'fuchsia', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'indigo', 'ivory', 'khaki', 'lavender', 'lime', 'linen', 'magenta', 'maroon', 'moccasin', 'navy', 'olive', 'orange', 'orchid', 'peru', 'pink', 'plum', 'purple', 'red', 'salmon', 'sienna', 'silver', 'snow', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'white', 'yellow'];
 ```
 
-Then add this to our code: 
+3. Then add this to our code: 
 ```
 var grammar = '#JSGF V1.0; grammar words; public <color> = ' + words.join(' | ') + ' ;'
 
@@ -115,7 +115,7 @@ var hints = document.querySelector('.hints');
 ```
 This will set the grammar, language, and other settings that our speech recognizer will use so that it knows the words it's trying to detect are going to spoken in English. It also sets up other variables corresponding to HTML elements on the page that we can modify later.
 
-## Let's add in the colors to our page.
+## 4. Let's add in the colors to our page.
 ```
 var colorHTML= '';
 words.forEach(function(v, i, a){
@@ -126,3 +126,58 @@ words.forEach(function(v, i, a){
 hints.innerHTML = 'Tap/click then say a color to change the background color of the app. Try '+ colorHTML + '.'
 ```
 This code will create a list in that "hints" paragraph text that we set up before. The code loops through our colors array and adds each one to this text box with a cool background color so that the user knows what the available options are.
+
+Now your screen should look like this:
+![alt text](https://github.com/hhshacks/speech_recognition_workshop/blob/master/Screen%20Shot%202018-11-02%20at%202.06.35%20PM.png)
+
+## 5. SPEECH RECOGNITION DETECTION TIME!!!!
+Let's add a function that starts our detection when the user clicks anywhere on the screen.
+```
+document.body.onclick = function() {
+  recognition.start();
+  console.log('Ready to receive a color command.');
+}
+```
+This code essentially calls the start() function on the recognizer when the user clicks anywhere in the body. It's telling it to get ready to listen for some speech to interpret.
+
+6. When our recognizer hears a word, it'll update its "onresult" parameter. We want to call a function that will do something when our recognizer hears a specific word.
+
+```
+recognition.onresult = function(event) {
+  var last = event.results.length - 1;
+  var input = event.results[last][0].transcript;
+
+  diagnostic.textContent = 'Result received: ' + input + '.';
+}
+```
+
+Copy this function into your program. The variable "input" grabs the latest trascripted word from the recognizer, which is equal to the most recent word that our user said. Then we update the diagnostic text on the bottom to let our user now which word our program detected.
+
+## Actually doing something when we detect a word
+Put this after setting the input variable and before the "diagnostic.textContent". This will change the backgroud of our page to the color our speech recognizer hears. 
+```
+bg.style.backgroundColor = input;
+```
+
+## Be sure to modify this later! Play around with different things to do if your program hears a specific color. MORE INSTRUCTIONS UNDERNEATH FOR LATER!!!
+For now, we'll just stick with changing the color.
+
+7. Let's stop our recognizer when we detect a pause in speech. Add this code to your Javascript file as well.
+```
+recognition.onspeechend = function() {
+  recognition.stop();
+}
+```
+### You're almost done!
+
+8. Just in case our recognizer doesn't detect anything. We want to have some error handling in place. Add these two functions to your code: 
+
+```
+recognition.onnomatch = function(event) {
+  diagnostic.textContent = "I didn't recognise that color.";
+}
+
+recognition.onerror = function(event) {
+  diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+}
+```
