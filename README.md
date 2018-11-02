@@ -83,7 +83,7 @@ This will give some basic visual properties to our elements, centering everythin
 Now that we're all done with the HTML and CSS, it's time to move on to the magic: the Javascript part that makes all the speech recognition work!
 
 # Javascript
-1. We'll be using a built-in Chrome API to do the speech recognition. In order to call it, put this at the top of your Javascript file: 
+1. We'll be using a built-in Chrome API to do the speech recognition. In order to call it, put this at the top of your script.js file: 
 ```
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
@@ -185,3 +185,35 @@ recognition.onerror = function(event) {
 # Congratulations, you've made a computational linguistics program! Our code will detect the user's speech and change the background color of the page to match the word they say!
 
 NOTE: Be sure to run your program in the new window tab, or the algorithm won't work.
+![alt text](https://github.com/hhshacks/speech_recognition_workshop/blob/master/Screen%20Shot%202018-11-02%20at%202.18.54%20PM.png)
+
+## When you're done, be sure to customize the words yourself! Change the array of words to your own words by changing the "words array" in the script.js file.
+```
+var words = [ 'aqua' , 'azure' , 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 'fuchsia', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'indigo', 'ivory', 'khaki', 'lavender', 'lime', 'linen', 'magenta', 'maroon', 'moccasin', 'navy', 'olive', 'orange', 'orchid', 'peru', 'pink', 'plum', 'purple', 'red', 'salmon', 'sienna', 'silver', 'snow', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'white', 'yellow'];
+```
+## Also change what your program actually DOES with those words!
+You can add this in your onresult function: 
+
+```
+recognition.onresult = function(event) {
+  var last = event.results.length - 1;
+  var input = event.results[last][0].transcript;
+
+  diagnostic.textContent = 'Result received: ' + input + '.';
+
+  // MAYBE REDIRECT TO ANOTHER WEBSITE WHEN YOU SAY A WORD!
+  if(input === 'blue'){
+    window.location = "http://www.google.com";
+  }
+  bg.style.backgroundColor = input;
+
+  console.log('Confidence: ' + event.results[0][0].confidence);
+}
+```
+In this case:
+```
+if(input === 'blue'){
+  window.location = "http://www.google.com";
+}
+```
+If our input word is blue, the page's url becomes "google.com". Change this to whatever word and whatever website you choose!
