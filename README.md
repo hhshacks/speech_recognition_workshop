@@ -76,3 +76,7 @@ div {
 ```
 
 This will give some basic visual properties to our elements, centering everything and making it all look nice :)
+
+### Your code should look something like this at this point:
+Inline-style: 
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
