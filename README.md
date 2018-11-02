@@ -30,7 +30,7 @@ This will give us some text on the page and link our Javascript file to our HTML
 
 
 
-4. Let's add a paragraph in the middle of the page to let our users know which words our program can detect. We'll be starting with colors for now, but you change it to whatever you want. Put it underneath the "h1" tag. We eventually want it to look like this:
+4. Let's add a paragraph in the middle of the page to let our users know which words our program can detect. It's blank right now, but we'll be putting stuff in it later. It'll show what words our program is able to detect. Put it underneath the "h1" tag.
 
 ```
 <p class="hints"></p>
@@ -78,5 +78,15 @@ div {
 This will give some basic visual properties to our elements, centering everything and making it all look nice :)
 
 ### Your code should look something like this at this point:
-Inline-style: 
 ![alt text](https://github.com/hhshacks/speech_recognition_workshop/blob/master/Screen%20Shot%202018-11-02%20at%201.46.19%20PM.png)
+
+Now that we're all done with the HTML and CSS, it's time to move on to the magic: the Javascript part that makes all the speech recognition work!
+
+#Javascript
+We'll be using a built-in Chrome API to do the speech recognition. In order to call it, put this at the top of your Javascript file: 
+```
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+```
+This creates the objects that we'll use to store and track the user's speech.
